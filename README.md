@@ -28,12 +28,9 @@ Things you may want to cover:
 
 |  column  |  type  |    option   |
 |----------|--------|-------------|
-| nickname | string | null: false |
-| password | string | null: false |
-| password_confirmation | string  | null:false |
-| email    | string | null: false |
-| password | string | null: false |
-|date of birth | date | null: false |
+| nickname | string | null: false |encrypted_password  | string | null: false  |
+| email    | string |unique: true |
+|date_of_birth | date | null: false |
 
 # Association
 
@@ -45,17 +42,16 @@ Things you may want to cover:
 
 # Items テーブル
 
-|  column  |  type   |   option    |
-|----------|---------|-------------|
-|  item_id | integer | null: false |
-|  price   | integer | null: false |
-|description| text   | null: false
-| category | text    | null: false |
-| date     | text    | null: false |
-| burden   | text    | null: false |
-|Estimated Ship Date | text   |null: false |
-| Current Shipping Area| text |null: false |
-| shipping days | text | null: false |
+|  column     |  type   |   option    |
+|-------------|---------|-------------|
+|  user_id    | integer | null: false |
+|  price      | integer | null: false |
+| date        | text    | null: false |
+| burden      | text    | null: false |
+|description  | text    | null: false |
+| category_id | text    | null: false |
+| current_shipping_Area_id| text |null: false |
+| shipping_day_id | text | null: false |
 
 
 # Association
