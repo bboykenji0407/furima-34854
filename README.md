@@ -41,7 +41,6 @@ Things you may want to cover:
 
 ###  - has_many :items
 ###  - has_many :purchases
-###  - has_many :shipping address 
 
 
 
@@ -50,12 +49,13 @@ Things you may want to cover:
 |  column     |  type   |   option    |
 |-------------|---------|-------------|
 |  user       | references | foreign key: true |
+|  name       | string  | null:false  |
 |  price      | integer | null: false |
 |description  | text    | null: false |
 | state_id    | integer | null: false |
 | category_id | integer | null: false |
 | burden_id   | integer | null: false |
-| Area_id     | integer | null: false |
+| area_id     | integer | null: false |
 | day_id      | integer | null: false |
 
 
@@ -65,7 +65,7 @@ Things you may want to cover:
 ### - has_one :purchase
 
 
-# Purchase テーブル
+# Purchases テーブル
 
 |  column  |   type   |  option  |
 |----------|----------|----------|
@@ -77,15 +77,15 @@ Things you may want to cover:
 
 ### - belongs_to :user
 ### - belongs_to :item
-### - has_one :shipping address
+### - has_one :shipping_address
 
 #  shipping_address テーブル 
 
 |  column  |  type    | option   |
 |----------|----------|----------|
-|purchase  |references | foreign_key: true
+|purchase  |references | foreign_key: true|
 | postal_code| string(7)| null: false |
-| address  | string     | null: false |
+| area_id  | integer   | null: false  |
 |  city    | string     | null: false |
 | street   | string     | null: false |
 | building | string     |  
