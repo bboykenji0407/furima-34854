@@ -4,7 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :nickname, presence: true
   with_options presence: true do
     validates :nickname
     validates :date_of_birth
@@ -17,7 +16,6 @@ class User < ApplicationRecord
       validates :last_name_kana
     end
   end
-  validates :date_of_birth, presence: true
   validates :password, format: {with: /(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{7,}/, message: '半角英数字混合にしてください'}
 end
   
