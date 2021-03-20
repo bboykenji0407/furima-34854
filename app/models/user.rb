@@ -14,4 +14,5 @@ class User < ApplicationRecord
     validates :last_name_kana, presence: true
   end
   validates :date_of_birth, presence: true
+  validates :password, format: {with: /(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{7,}/, message: '半角英数字混合にしてください'}
 end
