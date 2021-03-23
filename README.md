@@ -49,7 +49,7 @@ Things you may want to cover:
 |  column     |  type   |   option    |
 |-------------|---------|-------------|
 |  user       | references | foreign key: true |
-|  name       | string  | null:false  |
+|  name       | string  | null: false |
 |  price      | integer | null: false |
 |description  | text    | null: false |
 | state_id    | integer | null: false |
