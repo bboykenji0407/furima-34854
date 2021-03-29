@@ -1,8 +1,12 @@
 class PurchasesController < ApplicationController
+  before_action :authenticate_user!, only: :index
   before_action :set_item,  only: [:index, :create]
 
   def index
     @purchase_shipping_address = PurchaseShippingAddress.new 
+    if @item.purchase
+      redirect_to root_path
+    end
   end
 
   def create
@@ -28,7 +32,6 @@ class PurchasesController < ApplicationController
 
   def pay_item
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]  # 自身のPAY.JPテスト秘密鍵を記述しましょう
-      binding.pry
       Payjp::Charge.create(
         amount: @item.price,  # 商品の値段
         card: purchase_params[:token],    # カードトークン

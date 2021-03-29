@@ -4,7 +4,9 @@ RSpec.describe PurchaseShippingAddress, type: :model do
   describe '購入先情報の保存' do
     before do
       user = FactoryBot.create(:user)
-      @purchase_shipping_address = FactoryBot.build(:purchase_shipping_address, user_id: user.id)
+      item = FactoryBot.create(:item)
+      @purchase_shipping_address = FactoryBot.build(:purchase_shipping_address, item_id: item.id, user_id: user.id)
+      sleep 0.1 # 0.1秒待機 (コードが読み込まれなかった)
     end
     it "tokenがあれば保存ができること" do
       expect(@purchase_shipping_address).to be_valid
