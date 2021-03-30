@@ -24,6 +24,8 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    @item.purchase
+    redirect_to root_path
   end
 
   def destroy

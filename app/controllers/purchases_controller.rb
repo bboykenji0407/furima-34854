@@ -3,23 +3,25 @@ class PurchasesController < ApplicationController
   before_action :set_item,  only: [:index, :create]
 
   def index
-    if @item.purchase
+    if current_user == @item.user
       redirect_to root_path
+    else
+      @purchase_shipping_address = PurchaseShippingAddress.new 
     end
-    @purchase_shipping_address = PurchaseShippingAddress.new 
   end
 
   def create
-    if @item.purchase
+    if @item.purchase && current_user.id
       redirect_to root_path
-    end
-    @purchase_shipping_address = PurchaseShippingAddress.new(purchase_params)
-    if @purchase_shipping_address.valid?
-      pay_item
-      @purchase_shipping_address.save
-      return  redirect_to root_path
     else
-      render :index
+      @purchase_shipping_address = PurchaseShippingAddress.new(purchase_params)
+      if @purchase_shipping_address.valid?
+        pay_item
+        @purchase_shipping_address.save
+        return  redirect_to root_path
+      else
+        render :index
+      end
     end
   end
 

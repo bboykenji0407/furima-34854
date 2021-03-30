@@ -10,8 +10,11 @@ class PurchaseShippingAddress
     validates :area_id
     validates :city
     validates :street
-    validates :tell_num,  format: {with: /\A[0-9]+\z/, message: "半角数字のみ使用してください"}
+    validates :tell_num  
   end
+
+  validates :tell_num,  format: {with: /\A\d{11}\z/, message: "は11桁以内で入力してください"}
+  validates :tell_num,  format: {with: /\A[0-9]+\z/, message: "は半角数字のみ使用してください"}
 
   def save
     # 購入情報を保存し、変数purchaseに代入する
