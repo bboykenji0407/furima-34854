@@ -12,14 +12,24 @@ RSpec.describe PurchaseShippingAddress, type: :model do
       it "tokenがあれば保存ができること" do
         expect(@purchase_shipping_address).to be_valid
       end
-    end
-    context '購入先情報が保存できない時' do  
-      it 'user_id,item_id,postal_code,area_id,city,street,tell_numが存在すれば購入できる' do
-        expect(@purchase_shipping_address).to be_valid
-      end
       it 'buildingが空でも保存できる' do
         @purchase_shipping_address.building = ''
         expect(@purchase_shipping_address).to be_valid
+      end
+      it 'user_id,item_id,postal_code,area_id,city,street,tell_numが存在すれば購入できる' do
+        expect(@purchase_shipping_address).to be_valid
+      end
+    end
+    context '購入先情報が保存できない時' do  
+      it 'user_idが空では保存できないこと' do
+        @purchase_shipping_address.user_id = ''
+        @purchase_shipping_address.valid?
+        expect(@purchase_shipping_address.errors.full_messages).to include("User can't be blank")
+      end
+      it 'item_idが空だと保存できない' do
+        @purchase_shipping_address.item_id = ''
+        @purchase_shipping_address.valid?
+        expect(@purchase_shipping_address.errors.full_messages).to include("Item can't be blank")
       end
       it 'postal_codeが空だと保存ができない' do
         @purchase_shipping_address.postal_code = ''

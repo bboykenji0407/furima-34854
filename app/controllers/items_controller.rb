@@ -19,13 +19,11 @@ class ItemsController < ApplicationController
       render :new
     end
   end
+  
   def show
-    @purchases = Purchase.all
   end
 
   def edit
-    @item.purchase
-    redirect_to root_path
   end
 
   def destroy
@@ -53,7 +51,7 @@ class ItemsController < ApplicationController
   end
   
   def move_to_index
-    unless @item.user == current_user
+    unless @item.user == current_user && @item.purchase
       redirect_to root_path
     end
   end
