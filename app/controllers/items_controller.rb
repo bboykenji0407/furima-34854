@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:show, :index]
   before_action :set_item,          only: [:show, :edit, :update, :destroy]
   before_action :move_to_index,      only: [:edit, :update, :destroy]
-
+  before_action :item_search,  only: [:index, :search]
   def index
     @items = Item.order("created_at DESC")
   end
@@ -40,6 +40,10 @@ class ItemsController < ApplicationController
     end
   end
 
+  def search
+    @results = @p.result
+  end
+
   private
 
   def item_params
@@ -55,4 +59,10 @@ class ItemsController < ApplicationController
       redirect_to root_path
     end
   end
+
+
+  def item_search
+    @p = Item.ransack(params[:q])
+  end
+
 end

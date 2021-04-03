@@ -6,8 +6,8 @@ class PurchaseShippingAddress
     validates :token
     validates :user_id
     validates :item_id
-    validates :postal_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
-    validates :area_id,    numericality: { other_than: 1 }
+    validates :postal_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "ハイフンを入れてください"}
+    validates :area_id,    numericality: { other_than: 1, message: '選択してください' }
     validates :city
     validates :street
     validates :tell_num  

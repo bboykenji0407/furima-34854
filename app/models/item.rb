@@ -14,7 +14,7 @@ class Item < ApplicationRecord
     validates :image
     validates :name
     validates :description
-    with_options numericality: { other_than: 1 } do
+    with_options numericality: { other_than: 1, message: '選択してください'} do
       validates :state_id
       validates :category_id
       validates :burden_id
@@ -23,4 +23,5 @@ class Item < ApplicationRecord
     end
     validates :price, numericality: { greater_than: 300, less_than:9999999 }, format: {with: /\A[-]?[0-9]+(\.[0-9]+)?\z/, message: '半角数字を使用してください'}
   end
+
 end

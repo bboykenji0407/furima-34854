@@ -24,74 +24,74 @@ RSpec.describe PurchaseShippingAddress, type: :model do
       it 'user_idが空では保存できないこと' do
         @purchase_shipping_address.user_id = ''
         @purchase_shipping_address.valid?
-        expect(@purchase_shipping_address.errors.full_messages).to include("User can't be blank")
+        expect(@purchase_shipping_address.errors.full_messages).to include("ユーザーを入力してください")
       end
       it 'item_idが空だと保存できない' do
         @purchase_shipping_address.item_id = ''
         @purchase_shipping_address.valid?
-        expect(@purchase_shipping_address.errors.full_messages).to include("Item can't be blank")
+        expect(@purchase_shipping_address.errors.full_messages).to include("商品を入力してください")
       end
       it 'postal_codeが空だと保存ができない' do
         @purchase_shipping_address.postal_code = ''
         @purchase_shipping_address.valid?
-        expect(@purchase_shipping_address.errors.full_messages).to include("Postal code can't be blank")
+        expect(@purchase_shipping_address.errors.full_messages).to include("郵便番号を入力してください")
       end
       it 'postal_codeがハイフン無しでは保存できないこと' do
         @purchase_shipping_address.postal_code = '0000000'
         @purchase_shipping_address.valid?
-        expect(@purchase_shipping_address.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+        expect(@purchase_shipping_address.errors.full_messages).to include("郵便番号ハイフンを入れてください")
       end
       it "tokenが空では保存できないこと" do
         @purchase_shipping_address.token = nil
         @purchase_shipping_address.valid?
-        expect(@purchase_shipping_address.errors.full_messages).to include("Token can't be blank")  
+        expect(@purchase_shipping_address.errors.full_messages).to include("クレジットカード情報を入力してください")  
       end
       it 'postal_codeが半角数字以外だと保存できない' do
         @purchase_shipping_address.postal_code = '０かき'
         @purchase_shipping_address.valid?
-        expect(@purchase_shipping_address.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+        expect(@purchase_shipping_address.errors.full_messages).to include("郵便番号ハイフンを入れてください")
       end
       it 'area_idが空だと保存できない' do
         @purchase_shipping_address.area_id = ''
         @purchase_shipping_address.valid?
-        expect(@purchase_shipping_address.errors.full_messages).to include("Area can't be blank")
+        expect(@purchase_shipping_address.errors.full_messages).to include("都道府県を選択してください")
       end
       it 'cityが空だと保存できない' do
         @purchase_shipping_address.city = ""
         @purchase_shipping_address.valid?
-        expect(@purchase_shipping_address.errors.full_messages).to include("City can't be blank")
+        expect(@purchase_shipping_address.errors.full_messages).to include("市区町村を入力してください")
       end
       it 'streetが空だと保存できない' do
         @purchase_shipping_address.street = ""
         @purchase_shipping_address.valid?
-        expect(@purchase_shipping_address.errors.full_messages).to include("Street can't be blank")
+        expect(@purchase_shipping_address.errors.full_messages).to include("番地を入力してください")
       end
       it 'tell_numが空だと保存できない' do
         @purchase_shipping_address.tell_num = ""
         @purchase_shipping_address.valid?
-        expect(@purchase_shipping_address.errors.full_messages).to include("Tell num can't be blank")
+        expect(@purchase_shipping_address.errors.full_messages).to include("電話番号を入力してください")
       end
       it 'tell_numが全角文字では保存できない' do
         @purchase_shipping_address.tell_num = "かきく"
         @purchase_shipping_address.valid?
-        expect(@purchase_shipping_address.errors.full_messages).to include("Tell num は半角数字のみ使用してください")
+        expect(@purchase_shipping_address.errors.full_messages).to include("電話番号は半角数字のみ使用してください")
       end
       it 'tell_numが全角数字では保存できない' do
         @purchase_shipping_address.tell_num = "０００００００００"
         @purchase_shipping_address.valid?
-        expect(@purchase_shipping_address.errors.full_messages).to include("Tell num は半角数字のみ使用してください") 
+        expect(@purchase_shipping_address.errors.full_messages).to include("電話番号は半角数字のみ使用してください") 
       end
       it '半角英数字混合では登録できない' do
         @purchase_shipping_address.tell_num = "00aa000bb"
         @purchase_shipping_address.valid?
         #binding.pry
-        expect(@purchase_shipping_address.errors.full_messages).to include("Tell num は半角数字のみ使用してください")
+        expect(@purchase_shipping_address.errors.full_messages).to include("電話番号は半角数字のみ使用してください")
       end
       it '１２桁以上は登録できない' do
         @purchase_shipping_address.tell_num = "000000000000"
         @purchase_shipping_address.valid?
         #binding.pry
-        expect(@purchase_shipping_address.errors.full_messages).to include("Tell num は11桁以内で入力してください")
+        expect(@purchase_shipping_address.errors.full_messages).to include("電話番号は11桁以内で入力してください")
       end
     end
   end
